@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Jana ❤️</title>
+
+<style>
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #ffe6e6;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    overflow: hidden;
+    flex-direction: column;
+    text-align: center;
+}
+
+h1 {
+    color: #d32f2f;
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.gif-container img {
+    width: 200px;
+    border-radius: 15px;
+    margin-bottom: 25px;
+}
+
+.buttons {
+    display: flex;
+    gap: 20px;
+}
+
+button {
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+#yesBtn {
+    background-color: #4caf50;
+    color: white;
+}
+
+#yesBtn:hover {
+    transform: scale(1.1);
+}
+
+#noBtn {
+    background-color: #f44336;
+    color: white;
+    position: relative;
+    transition: left 0.3s ease, top 0.3s ease;
+}
+
+#success-message {
+    display: none;
+    color: #d32f2f;
+}
+
+#success-message h2 {
+    font-size: 2.5rem;
+}
+
+.heart {
+    position: fixed;
+    top: -20px;
+    font-size: 24px;
+    animation: fall 3s linear forwards;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(100vh);
+        opacity: 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- AUDIO (Champagne Poetry – “I love you” part) -->
+<audio id="loveSong">
+    <source src="https://files.catbox.moe/9b4f0v.mp3" type="audio/mpeg">
+</audio>
+
+<div id="question-screen">
+    <div class="gif-container">
+        <img src="https://media.tenor.com/gUiu1zyxfzYAAAAi/bear-kiss-bear-kisses.gif">
+    </div>
+
+    <h1>Jana, will you be my Valentine?</h1>
+
+    <div class="buttons">
+        <button id="yesBtn" onclick="sheSaidYes()">Yes! ❤️</button>
+        <button id="noBtn" onmouseover="moveButton()">No</button>
+    </div>
+</div>
+
+<div id="success-message">
+    <img src="https://media.tenor.com/ivKWdfQ3NoAAAAAi/bear-kiss-bear-kisses.gif" width="250">
+    <h2>I love you ❤️</h2>
+</div>
+
+<script>
+function moveButton() {
+    const noBtn = document.getElementById('noBtn');
+    const padding = 20;
+
+    const maxX = window.innerWidth - noBtn.offsetWidth - padding;
+    const maxY = window.innerHeight - noBtn.offsetHeight - padding;
+
+    noBtn.style.position = 'absolute';
+    noBtn.style.left = Math.random() * maxX + 'px';
+    noBtn.style.top = Math.random() * maxY + 'px';
+}
+
+function sheSaidYes() {
+    document.getElementById('question-screen').style.display = 'none';
+    document.getElementById('success-message').style.display = 'block';
+
+    // Play song
+    document.getElementById('loveSong').play();
+
+    // Hearts
+    for (let i = 0; i < 35; i++) {
+        const heart = document.createElement('div');
+        heart.className = 'heart';
+        heart.innerHTML = '❤️';
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.fontSize = Math.random() * 20 + 20 + 'px';
+        document.body.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 3000);
+    }
+}
+</script>
+
+</body>
+</html>
